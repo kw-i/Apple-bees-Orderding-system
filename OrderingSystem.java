@@ -281,7 +281,8 @@ public class OrderingSystem {
                         System.out.println("This table has no orders.");
                     } else {
                         System.out.println("\n--- Final Order (Table " + checkoutTableChoice + ") ---");
-                        double total = 0;
+
+                        double subtotal = 0;
 
                         for (MenuItem item : order3) {
                             String details = "";
@@ -299,14 +300,47 @@ public class OrderingSystem {
                                 if (dessert.isSugarFree()) details = " [Sugar Free]";
                             }
 
-                            System.out.printf("%s (%s)%s - $%.2f\n", item.getName(), item.getType(), details, item.getPrice());
-                            total += item.getPrice();
+                            System.out.printf("%s (%s)%s - $%.2f\n",
+                                    item.getName(), item.getType(), details, item.getPrice());
+
+                            subtotal += item.getPrice();
                         }
 
-                        System.out.printf("Total: $%.2f\n", total);
-                        System.out.println("Thank you for ordering!");
+                        
+                        System.out.println("\nChoose gratuity:");
+                        System.out.println("1 - None");
+                        System.out.println("2 - 10%");
+                        System.out.println("3 - 15%");
+                        System.out.println("4 - 20%");
+                        System.out.print("Your choice: ");
 
-                        currentTable3.setOrderFinished(true); 
+                        int tipChoice = sc.nextInt();
+                        double gratuityRate = 0.0;
+
+                        switch (tipChoice) {
+                            case 2: gratuityRate = 0.10; break;
+                            case 3: gratuityRate = 0.15; break;
+                            case 4: gratuityRate = 0.20; break;
+                            default: gratuityRate = 0.0;
+                        }
+
+                        
+                        double vat = subtotal * 0.12;
+                        double serviceFee = subtotal * 0.10;
+                        double gratuity = subtotal * gratuityRate;
+                        double finalTotal = subtotal + vat + serviceFee + gratuity;
+
+                        
+                        System.out.println("\n--- Bill Breakdown ---");
+                        System.out.printf("Subtotal: $%.2f\n", subtotal);
+                        System.out.printf("VAT (12%%): $%.2f\n", vat);
+                        System.out.printf("Service Fee (10%%): $%.2f\n", serviceFee);
+                        System.out.printf("Gratuity: $%.2f\n", gratuity);
+                        System.out.printf("TOTAL: $%.2f\n", finalTotal);
+
+                        System.out.println("\nThank you for ordering!");
+
+                        currentTable3.setOrderFinished(true);
                     }
                     break;
 

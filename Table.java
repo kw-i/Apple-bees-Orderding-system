@@ -13,14 +13,26 @@ class Table {
         this.orders = new ArrayList<>();
     }
 
-    public int getTableNumber() { return tableNumber; }
-    public boolean isOccupied() { return occupied; }
-    public void setOccupied(boolean occupied) { this.occupied = occupied; }
+    public int getTableNumber() { 
+        return tableNumber; 
+    }
+    public boolean isOccupied() {
+         return occupied; 
+        }
+    public void setOccupied(boolean occupied) {
+         this.occupied = occupied; 
+        }
 
-    public boolean isOrderFinished() { return orderFinished; }
-    public void setOrderFinished(boolean finished) { this.orderFinished = finished; }
+    public boolean isOrderFinished() {
+         return orderFinished; 
+        }
+    public void setOrderFinished(boolean finished) {
+         this.orderFinished = finished; 
+        }
 
-    public ArrayList<MenuItem> getOrders() { return orders; }
+    public ArrayList<MenuItem> getOrders() {
+         return orders; 
+        }
 
     public void clearTable() {
         for (MenuItem item : orders) {
